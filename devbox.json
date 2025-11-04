@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
+  "packages": [
+    "go@latest",
+    "golangci-lint@latest",
+    "gnumake@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Yoink development environment ready!'",
+      "go version",
+      "echo 'Run \"make help\" for available commands'"
+    ],
+    "scripts": {
+      "test": "make test",
+      "build": "make build",
+      "lint": "make lint",
+      "install": "make install",
+      "integration-test": "make integration-test",
+      "all": "make all"
+    }
+  }
+}
