@@ -167,7 +167,7 @@ func TestPlugin_Revoke(t *testing.T) {
 				}
 
 				w.WriteHeader(tt.serverResponse)
-				w.Write([]byte(tt.serverBody))
+				_, _ = w.Write([]byte(tt.serverBody))
 			}))
 			defer server.Close()
 

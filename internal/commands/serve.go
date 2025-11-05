@@ -151,7 +151,7 @@ func makeRevokeHandler(engine *core.Engine) http.HandlerFunc {
 			http.Error(w, "Failed to read request body", http.StatusBadRequest)
 			return
 		}
-		defer r.Body.Close()
+		defer func() { _ = r.Body.Close() }()
 
 		var req RevokeRequest
 		if err := json.Unmarshal(body, &req); err != nil {
@@ -177,7 +177,7 @@ func makeRevokeHandler(engine *core.Engine) http.HandlerFunc {
 		// Log results
 		for _, result := range results {
 			formatter := output.NewHumanFormatter(os.Stderr)
-			formatter.WriteResult(result)
+			_ = formatter.WriteResult(result)
 		}
 
 		// Prepare response
@@ -198,7 +198,7 @@ func makeRevokeHandler(engine *core.Engine) http.HandlerFunc {
 			w.WriteHeader(http.StatusOK)
 		}
 
-		json.NewEncoder(w).Encode(response)
+		_ = json.NewEncoder(w).Encode(response)
 	}
 }
 
@@ -210,8 +210,8 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{
-		"status": "ok",
+	_ = json.NewEncoder(w).Encode(map[string]string{
+		"status":  "ok",
 		"service": "yoink",
 	})
 }
