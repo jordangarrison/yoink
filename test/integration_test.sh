@@ -81,7 +81,7 @@ echo
 # Test 8: Version flag
 echo "Test 8: Version flag"
 OUTPUT=$(./bin/yoink --version 2>&1)
-if echo "$OUTPUT" | grep -q "1.0.0"; then
+if echo "$OUTPUT" | grep -q "0.0.1"; then
     echo "✓ Version flag works"
 else
     echo "✗ Version flag failed"

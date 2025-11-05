@@ -24,7 +24,7 @@ Currently supports:
   - GitHub Personal Access Tokens (PATs)
   - GitHub OAuth Tokens
   - More providers coming soon!`,
-	Version: "1.0.0",
+	Version: "0.0.1",
 }
 
 func init() {
